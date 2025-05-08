@@ -7,7 +7,7 @@ count="0"
 dataset=$1
 file=input_${dataset}.list
 
-[ -d /eos/user/p/pdas/HAA_svfit/${1} ] || mkdir /eos/user/p/pdas/HAA_svfit/${1}
+[ -d /eos/user/a/aquinn/HAA_svfit/${1} ] || mkdir /eos/user/a/aquinn/HAA_svfit/${1}
 while read -r line; do
 
 echo count $count
@@ -16,10 +16,10 @@ input_filename=$(echo $line | awk '{print $1}')
 
 cat>Job_${1}_${count}.sh<<EOF
 #!/bin/bash
-cd /afs/cern.ch/work/p/pdas/haa/svfit/CMSSW_13_3_0/src/FastMTTFramework/ROOT/bin/
+cd /afs/cern.ch/work/a/aquinn/haa/svfit/CMSSW_13_3_0/src/FastMTTFramework/ROOT/bin/
 cmsenv
 
-$CMSSW_BASE/bin/$SCRAM_ARCH/SVFit inputfile=${input_filename} newOutputFile=1.0 newFile=/eos/user/p/pdas/HAA_svfit/${1}/out_${count}.root
+$CMSSW_BASE/bin/$SCRAM_ARCH/SVFit inputfile=${input_filename} newOutputFile=1.0 newFile=/eos/user/a/aquinn/HAA_svfit/${1}/out_${count}.root
 
 EOF
 
